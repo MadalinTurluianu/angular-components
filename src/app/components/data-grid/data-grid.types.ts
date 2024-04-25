@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
+export enum Direction {
+  up = 'up',
+  down = 'down',
+}
 
-export type DataGridProps<T> = {
-  data: T[] | Observable<T[]>;
-  sortable: boolean;
-  pageSize: number | null;
-};
+export type SortChangeProps = { columnName: string; direction: Direction };
+
+export type PaginationChangeProps = { currentPage: number; pageSize: number | null }

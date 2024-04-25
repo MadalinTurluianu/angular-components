@@ -1,0 +1,10 @@
+<table class="data-grid">
+  <tr>
+    <th *ngFor="let column of tableColumns">
+      <ng-container>{{ column.templateRef }}</ng-container>
+    </th>
+  </tr>
+  <tr *ngFor="let item of data">
+    <td *ngFor="let property of properties">{{ item[property] }}</td>
+  </tr>
+</table>

@@ -3,9 +3,7 @@ import { Component, Input } from '@angular/core';
   selector: 't-column',
   standalone: true,
   imports: [],
-  template: `<div [attr.data-property]="property">
-    {{ name }}
-  </div>`,
+  templateUrl: './table-column.component.html',
   styleUrl: './table-column.component.css',
 })
 export class TableColumnComponent<T> {
