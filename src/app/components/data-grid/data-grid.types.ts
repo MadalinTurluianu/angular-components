@@ -1,6 +1,6 @@
 export enum Direction {
-  up = 'up',
-  down = 'down',
+  decreasing = 'decreasing',
+  increasing = 'increasing',
 }
 
 export type SortChangeProps = { columnName: string; direction: Direction };

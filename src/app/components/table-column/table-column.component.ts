@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './table-column.component.html',
   styleUrl: './table-column.component.css',
 })
-export class TableColumnComponent<T> {
+export class TableColumnComponent<T extends Record<string, string | number>> {
   @Input() name!: string;
   @Input() property!: keyof T;
   @Input() sortable!: boolean;

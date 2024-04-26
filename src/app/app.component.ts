@@ -9,8 +9,19 @@ import { tableData } from './data/table-data';
   standalone: true,
   template: `<t-grid [data]="data" [pageSize]="10" [sortable]="true">
     <t-column name="Name" property="name" [sortable]="true" />
-    <t-column name="Position" property="position" [sortable]="true" />
-    <t-column name="Company" property="company" [sortable]="true" />
+    <t-column
+      name="Position"
+      property="position"
+      [sortable]="true"
+      appTableHead
+    />
+    <t-column
+      name="Company"
+      property="company"
+      [sortable]="true"
+      appTableHead
+    />
+    <div>hello</div>
   </t-grid>`,
   imports: [RouterOutlet, DataGridComponent, TableColumnComponent],
 })
