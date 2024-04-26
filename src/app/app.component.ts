@@ -1,30 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { DataGridComponent } from './components/data-grid/data-grid.component';
-import { TableColumnComponent } from './components/table-column/table-column.component';
-import { tableData } from './data/table-data';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  template: `<t-grid [data]="data" [pageSize]="10" [sortable]="true">
-    <t-column name="Name" property="name" [sortable]="true" />
-    <t-column
-      name="Position"
-      property="position"
-      [sortable]="true"
-      appTableHead
-    />
-    <t-column
-      name="Company"
-      property="company"
-      [sortable]="true"
-      appTableHead
-    />
-    <div>hello</div>
-  </t-grid>`,
-  imports: [RouterOutlet, DataGridComponent, TableColumnComponent],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  imports: [CommonModule, RouterOutlet, RouterLink, RouterLinkActive],
 })
-export class AppComponent {
-  data = tableData;
-}
+export class AppComponent {}
