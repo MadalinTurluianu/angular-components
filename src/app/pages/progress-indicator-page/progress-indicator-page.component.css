@@ -1,6 +1,9 @@
 .page {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
+  margin-top: 5rem;
 }
 
 .component-wrapper {
@@ -10,12 +13,21 @@
   width: fit-content;
 }
 
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 16rem;
+  padding-bottom: 3rem;
+}
+
 .controls {
-  margin-top: 5rem;
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 4fr 1fr;
   gap: 1rem;
   width: 20rem;
+  padding: 1rem;
 }
 
 input[type="color"] {

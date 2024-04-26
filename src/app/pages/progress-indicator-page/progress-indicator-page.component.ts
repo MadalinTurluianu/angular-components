@@ -11,19 +11,19 @@ import { ProgressIndicatorComponent } from '../../components/progress-indicator/
 })
 export class ProgressIndicatorPageComponent {
   input1 = {
-    color: '#4287f5',
+    color: '#71a8ff',
     progress: 30,
     radius: 50,
   };
 
   input2 = {
-    color: '#4287f5',
+    color: '#71a8ff',
     progress: 60,
     radius: 50,
   };
 
   input3 = {
-    color: '#4287f5',
+    color: '#71a8ff',
     progress: 81,
     radius: 50,
   };

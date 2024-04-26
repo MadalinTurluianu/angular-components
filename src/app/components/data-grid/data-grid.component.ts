@@ -130,7 +130,7 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   onPageSizeChange(event: Event) {
     if (!(event.target instanceof HTMLInputElement)) return;
 
-    const inputValue = Number(event.target.value);
+    const inputValue = Number(event.target.value) || 1;
 
     const newPageSize =
       inputValue > this.data.length ? this.data.length : inputValue;

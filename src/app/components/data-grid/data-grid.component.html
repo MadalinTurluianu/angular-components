@@ -1,9 +1,21 @@
-<table class="data-grid">
-  <thead>
+<div class="container">
+  <fieldset class="page-size">
+    <label for="pageSize">Page Size</label>
+    <input
+      id="pageSize"
+      type="number"
+      min="1"
+      [max]="data.length"
+      [value]="pageSize"
+      (change)="onPageSizeChange($event)"
+    />
+  </fieldset>
+
+  <table class="data-grid">
     <tr>
       <ng-container *ngFor="let column of tableColumns">
         <th>
-          <button (click)="sortData(column.property)">
+          <button class="column-head" (click)="sortData(column.property)">
             <t-column
               [name]="column.name"
               [property]="column.property"
@@ -13,26 +25,31 @@
         </th>
       </ng-container>
     </tr>
-  </thead>
-  <tbody>
+
     <tr *ngFor="let item of shownData">
       <td *ngFor="let property of properties">{{ item[property] }}</td>
     </tr>
-  </tbody>
-</table>
-<div>
-  <button *ngIf="previousAvailable" type="button" (click)="goPreviousPage()">
-    Previous
-  </button>
-  <span>Page {{ page }} / {{ pages }}</span>
-  <button *ngIf="nextAvailable" type="button" (click)="goNextPage()">Next</button>
-  <fieldset>
-    <label for="pageSize">Page Size</label>
-    <input
-      id="pageSize"
-      type="number"
-      [value]="pageSize"
-      (change)="onPageSizeChange($event)"
-    />
-  </fieldset>
+  </table>
+
+  <div class="page-selector">
+    <button
+      *ngIf="previousAvailable"
+      type="button"
+      (click)="goPreviousPage()"
+      class="arrow"
+    >
+      &#60;
+    </button>
+
+    <span>Page {{ page }} / {{ pages }}</span>
+
+    <button
+      *ngIf="nextAvailable"
+      type="button"
+      (click)="goNextPage()"
+      class="arrow"
+    >
+      &#62;
+    </button>
+  </div>
 </div>

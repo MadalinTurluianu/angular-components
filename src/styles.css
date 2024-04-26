@@ -1,6 +1,15 @@
+:root {
+  --text-primary: #ffffff;
+  --text-secondary: #00152c;
+  --text-contrast: #71a8ff;
+  --text-highlight: #b0ceff;
+  --background-primary: #00152c;
+  --background-secondary: #ffffff;
+}
+
 * {
   box-sizing: border-box;
- font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif;
 }
 
 html,
@@ -18,9 +27,15 @@ html,
 body,
 app-root {
   height: 100%;
+  color: var(--text-primary)
 }
 
 app-root {
   display: flex;
   flex-direction: column;
+  background-color: var(--background-primary);
+}
+
+fieldset {
+  border-color: var(--text-primary);
 }
