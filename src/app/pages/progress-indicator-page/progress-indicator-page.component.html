@@ -1,1 +1,137 @@
-<p>progress-indicator-page works!</p>
+<div class="page">
+  <div class="component-wrapper">
+    <app-progress-indicator
+      [color]="input1.color"
+      [hollow]="false"
+      [progress]="input1.progress"
+      [showProgress]="false"
+      [radius]="input1.radius"
+    />
+
+    <fieldset class="controls">
+      <legend>Controls</legend>
+
+      <label for="range">Progress</label>
+      <input
+        id="range"
+        type="range"
+        min="0"
+        max="100"
+        [value]="input1.progress"
+        (change)="updateInput1Progress($event)"
+      />
+      <p>value</p>
+
+      <label for="radius">Radius</label>
+      <input
+        id="radius"
+        type="range"
+        min="50"
+        max="120"
+        step="2"
+        [value]="input1.radius"
+        (change)="updateInput1Radius($event)"
+      />
+      <p>value</p>
+
+      <label for="color">Color</label>
+      <input
+        id="color"
+        type="color"
+        [value]="input1.color"
+        (change)="updateInput1Color($event)"
+      />
+      <p>value</p>
+    </fieldset>
+  </div>
+  <div class="component-wrapper">
+    <app-progress-indicator
+      [color]="input2.color"
+      [hollow]="true"
+      [progress]="input2.progress"
+      [showProgress]="false"
+      [radius]="input2.radius"
+    />
+
+    <fieldset class="controls">
+      <legend>Controls</legend>
+
+      <label for="range">Progress</label>
+      <input
+        id="range"
+        type="range"
+        min="0"
+        max="100"
+        [value]="input2.progress"
+        (change)="updateInput2Progress($event)"
+      />
+      <p>value</p>
+
+      <label for="radius">Radius</label>
+      <input
+        id="radius"
+        type="range"
+        min="50"
+        max="120"
+        step="2"
+        [value]="input2.radius"
+        (change)="updateInput2Radius($event)"
+      />
+      <p>value</p>
+
+      <label for="color">Color</label>
+      <input
+        id="color"
+        type="color"
+        [value]="input2.color"
+        (change)="updateInput2Color($event)"
+      />
+      <p>value</p>
+    </fieldset>
+  </div>
+  <div class="component-wrapper">
+    <app-progress-indicator
+      [color]="input3.color"
+      [hollow]="true"
+      [progress]="input3.progress"
+      [showProgress]="true"
+      [radius]="input3.radius"
+    />
+
+    <fieldset class="controls">
+      <legend>Controls</legend>
+
+      <label for="range">Progress</label>
+      <input
+        id="range"
+        type="range"
+        min="0"
+        max="100"
+        [value]="input3.progress"
+        (change)="updateInput3Progress($event)"
+      />
+      <p>value</p>
+
+      <label for="radius">Radius</label>
+      <input
+        id="radius"
+        type="range"
+        min="50"
+        max="120"
+        step="2"
+        [value]="input3.radius"
+        (change)="updateInput3Radius($event)"
+      />
+      <p>value</p>
+
+      <label for="color">Color</label>
+      <input
+        id="color"
+        type="color"
+        [value]="input3.color"
+        (change)="updateInput3Color($event)"
+      />
+      <p>value</p>
+    </fieldset>
+  </div>
+</div>

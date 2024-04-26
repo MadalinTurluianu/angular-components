@@ -1,0 +1,31 @@
+.hidden {
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+
+  p {
+    position: absolute;
+    z-index: 10;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+}
+
+[role="progressbar"] {
+  border-radius: 50%;
+  position: relative;
+}
+
+.hollow {
+  -webkit-mask-image: radial-gradient(
+    circle,
+    transparent 58%,
+    black calc(58% + 1px)
+  );
+  mask-image: radial-gradient(circle, transparent 58%, black calc(58% + 1px));
+}

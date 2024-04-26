@@ -1,1 +1,15 @@
-<p>progress-indicator works!</p>
+<div class="wrapper">
+  <div
+    role="progressbar"
+    [class]="hollow ? 'hollow' : '' + showProgress ? ' show-progress' : ''"
+    [attr.aria-valuenow]="progress"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [style.width]="radius * 2 + 'px'"
+    [style.height]="radius * 2 + 'px'"
+    style.background-image="conic-gradient({{ color }} {{
+      progress
+    }}%, transparent {{ progress + 0.1 }}%)"
+  ></div>
+  <p [class]="!showProgress ? 'hidden' : ''">{{ progress }}%</p>
+</div>
