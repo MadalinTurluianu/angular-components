@@ -1,5 +1,5 @@
 <div class="container">
-  <fieldset class="page-size">
+  <fieldset class="page-size" data-testid="page-size">
     <label for="pageSize">Page Size</label>
     <button
       [disabled]="pageSize == null || pageSize <= 1"
@@ -26,32 +26,36 @@
     </button>
   </fieldset>
 
-  <table class="data-grid">
+  <table class="data-grid" data-testid="table">
     <tr>
-      <ng-container *ngFor="let column of tableColumns">
-        <th>
-          <button class="column-head" (click)="sortData(column.property)">
-            <t-column
-              [name]="column.name"
-              [property]="column.property"
-              [sortable]="column.sortable"
-            />
-          </button>
-        </th>
-      </ng-container>
+      <th data-testid="header" *ngFor="let column of tableColumns">
+        <button
+          class="column-head"
+          (click)="sortData(column.property, column.sortable)"
+          data-testid="header-button"
+        >
+          <t-column
+            [name]="column.name"
+            [property]="column.property"
+            [sortable]="column.sortable"
+          />
+        </button>
+      </th>
     </tr>
 
-    <tr *ngFor="let item of shownData">
-      <td *ngFor="let property of properties">{{ item[property] }}</td>
+    <tr *ngFor="let item of shownData" data-testid="row">
+      <td *ngFor="let property of properties" data-testid="cell">
+        {{ item[property] ?? "" }}
+      </td>
     </tr>
   </table>
-
-  <div class="page-selector">
+  <div class="page-selector" data-testid="page-navigator">
     <button
       *ngIf="previousAvailable"
       type="button"
       (click)="goPreviousPage()"
       class="arrow"
+      data-testid="previous"
     >
       &#60;
     </button>
@@ -63,6 +67,7 @@
       type="button"
       (click)="goNextPage()"
       class="arrow"
+      data-testid="next"
     >
       &#62;
     </button>

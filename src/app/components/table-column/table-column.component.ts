@@ -9,5 +9,5 @@ import { Component, Input } from '@angular/core';
 export class TableColumnComponent<T extends Record<string, string | number>> {
   @Input() name!: string;
   @Input() property!: keyof T;
-  @Input() sortable!: boolean;
+  @Input() sortable: boolean = true;
 }

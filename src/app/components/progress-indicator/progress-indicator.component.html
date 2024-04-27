@@ -1,6 +1,7 @@
 <div class="wrapper">
   <div
     role="progressbar"
+    data-testid="progressbar"
     [class]="hollow ? 'hollow' : '' + showProgress ? ' show-progress' : ''"
     [attr.aria-valuenow]="progress"
     aria-valuemin="0"

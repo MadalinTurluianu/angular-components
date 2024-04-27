@@ -37,7 +37,7 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   @Output() paginationChange = new EventEmitter<PaginationChangeProps>();
 
   @ContentChildren(TableColumnComponent) tableColumns:
-    | QueryList<TableColumnComponent<T>>
+    | TableColumnComponent<T>[]
     | undefined;
 
   sortedData: T[] = [];
@@ -52,9 +52,13 @@ export class DataGridComponent<T extends Record<string, string | number>> {
 
   // show page
   checkNumberOfPages() {
-    this.pages = Math.ceil(
-      this.sortedData.length / (this.pageSize ?? this.sortedData.length)
-    );
+    if (this.sortedData.length === 0) {
+      this.pages = 1;
+    } else {
+      this.pages = Math.ceil(
+        this.sortedData.length / (this.pageSize ?? this.sortedData.length)
+      );
+    }
   }
 
   showPage() {
@@ -67,8 +71,8 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   }
 
   // sort data
-  sortData(sortBy: keyof T) {
-    if (!this.sortable) return;
+  sortData(sortBy: keyof T, sortable: boolean) {
+    if (!this.sortable || !sortable) return;
 
     // modify sortBy and sortDirection
     if (this.sortedBy !== sortBy) {
@@ -188,13 +192,13 @@ export class DataGridComponent<T extends Record<string, string | number>> {
       // Added condition
       this.dataSubscription = this.data.subscribe((newData) => {
         // Subscribed to observable
-        this.sortedData = newData;
+        this.sortedData = newData.map((item) => ({ ...item }));
         this.showPage();
         this.checkNextAvailable();
         this.changeDetector.detectChanges();
       });
     } else {
-      this.sortedData = this.data;
+      this.sortedData = this.data.map((item) => ({ ...item }));
       this.showPage();
       this.checkNextAvailable();
     }
