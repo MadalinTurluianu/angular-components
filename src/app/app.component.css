@@ -12,7 +12,10 @@
     text-decoration: none;
     font-size: 1.2rem;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
       color: var(--text-highlight);
       text-decoration: underline;
     }

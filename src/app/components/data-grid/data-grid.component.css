@@ -31,6 +31,12 @@
   font-size: 1.1rem;
   color: var(--text-contrast);
   cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--text-highlight);
+  }
 }
 
 /* page size */
