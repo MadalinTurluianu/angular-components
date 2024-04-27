@@ -180,6 +180,7 @@ export class DataGridComponent<T extends Record<string, string | number>> {
     this.changePageSize(this.pageSize + 1);
     if (this.shownData.length === 0 && this.page > 1) {
       this.page--
+      this.showPage();
     }
   }
 
