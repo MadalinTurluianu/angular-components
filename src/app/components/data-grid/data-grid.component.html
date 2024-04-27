@@ -45,7 +45,7 @@
 
     <tr *ngFor="let item of shownData" data-testid="row">
       <td *ngFor="let property of properties" data-testid="cell">
-        {{ item[property] ?? "" }}
+        {{ item[property] }}
       </td>
     </tr>
   </table>

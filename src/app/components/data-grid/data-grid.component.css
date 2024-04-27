@@ -3,6 +3,12 @@
   flex-direction: column;
   align-items: center;
   gap: var(--gap-normal);
+
+  button:hover,
+  button:focus,
+  button:active {
+    color: var(--text-highlight);
+  }
 }
 
 /* table general */
@@ -31,12 +37,6 @@
   font-size: 1.1rem;
   color: var(--text-contrast);
   cursor: pointer;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: var(--text-highlight);
-  }
 }
 
 /* page size */
