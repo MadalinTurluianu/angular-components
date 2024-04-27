@@ -207,6 +207,7 @@ export class DataGridComponent<T extends Record<string, string | number>> {
       this.showPage();
       this.checkNextAvailable();
     }
+    this.pageSize = this.pageSize ?? this.sortedData.length;
   }
 
   ngOnDestroy() {

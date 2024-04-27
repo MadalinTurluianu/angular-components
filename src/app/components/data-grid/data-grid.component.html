@@ -13,7 +13,7 @@
       type="number"
       min="1"
       [max]="sortedData.length"
-      [value]="pageSize ?? sortedData.length"
+      [value]="pageSize"
       (change)="onPageSizeChange($event)"
     />
 
