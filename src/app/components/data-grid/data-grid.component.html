@@ -12,13 +12,13 @@
       id="pageSize"
       type="number"
       min="1"
-      [max]="data.length"
+      [max]="sortedData.length"
       [value]="pageSize"
       (change)="onPageSizeChange($event)"
     />
 
     <button
-      [disabled]="pageSize == null || pageSize >= data.length"
+      [disabled]="pageSize == null || pageSize >= sortedData.length"
       type="button"
       (click)="increasePageSize()"
     >

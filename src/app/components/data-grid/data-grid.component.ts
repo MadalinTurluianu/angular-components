@@ -7,7 +7,7 @@ import {
   Output,
   QueryList,
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { TableColumnComponent } from '../table-column/table-column.component';
 import {
   Direction,
@@ -27,7 +27,9 @@ import { FormsModule } from '@angular/forms';
 export class DataGridComponent<T extends Record<string, string | number>> {
   constructor(private changeDetector: ChangeDetectorRef) {}
 
-  @Input() data: T[] /*| Observable<T[]>*/ = [];
+  private dataSubscription: Subscription | undefined; // Added property
+
+  @Input() data: T[] | Observable<T[]> = [];
   @Input() sortable: boolean = false;
   @Input() pageSize: number | null = null;
 
@@ -51,7 +53,7 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   // show page
   checkNumberOfPages() {
     this.pages = Math.ceil(
-      this.data.length / (this.pageSize ?? this.data.length)
+      this.sortedData.length / (this.pageSize ?? this.sortedData.length)
     );
   }
 
@@ -78,7 +80,7 @@ export class DataGridComponent<T extends Record<string, string | number>> {
       this.sortDirection = Direction.increasing;
     }
 
-    this.sortedData = this.data.sort((a, b) => {
+    this.sortedData = this.sortedData.sort((a, b) => {
       if (a[sortBy] < b[sortBy]) {
         return this.sortDirection === Direction.increasing ? -1 : 1;
       } else {
@@ -139,11 +141,12 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   // change page size
 
   changePageSize(size: number) {
-    const newPageSize = size > this.data.length ? this.data.length : size;
+    const newPageSize =
+      size > this.sortedData.length ? this.sortedData.length : size;
 
     this.pageSize = newPageSize;
 
-    if (this.data.length / newPageSize <= 1) {
+    if (this.sortedData.length / newPageSize <= 1) {
       this.page = 1;
     }
 
@@ -166,13 +169,13 @@ export class DataGridComponent<T extends Record<string, string | number>> {
 
   increasePageSize() {
     if (this.pageSize == null) return;
-    if (this.pageSize >= this.data.length) return;
+    if (this.pageSize >= this.sortedData.length) return;
 
     this.changePageSize(this.pageSize + 1);
   }
 
   decreasePageSize() {
-    let newPageSize = this.pageSize ?? this.data.length;
+    let newPageSize = this.pageSize ?? this.sortedData.length;
     if (newPageSize <= 1) return;
 
     this.changePageSize(newPageSize - 1);
@@ -181,9 +184,26 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   // on init
 
   ngOnInit() {
-    this.sortedData = this.data;
-    this.showPage();
-    this.checkNextAvailable();
+    if (this.data instanceof Observable) {
+      // Added condition
+      this.dataSubscription = this.data.subscribe((newData) => {
+        // Subscribed to observable
+        this.sortedData = newData;
+        this.showPage();
+        this.checkNextAvailable();
+        this.changeDetector.detectChanges();
+      });
+    } else {
+      this.sortedData = this.data;
+      this.showPage();
+      this.checkNextAvailable();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe();
+    }
   }
 
   ngAfterViewInit() {
