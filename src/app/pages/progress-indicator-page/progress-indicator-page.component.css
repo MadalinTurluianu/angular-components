@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
+  gap: var(--gap-large);
   margin-top: 5rem;
 }
 
@@ -25,7 +25,7 @@
 .controls {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  gap: 1rem;
+  gap: var(--gap-normal);
   width: 20rem;
   padding: 1rem;
 }

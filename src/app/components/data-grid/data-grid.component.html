@@ -1,6 +1,13 @@
 <div class="container">
   <fieldset class="page-size">
     <label for="pageSize">Page Size</label>
+    <button
+      [disabled]="pageSize == null || pageSize <= 1"
+      type="button"
+      (click)="decreasePageSize()"
+    >
+      -
+    </button>
     <input
       id="pageSize"
       type="number"
@@ -9,6 +16,14 @@
       [value]="pageSize"
       (change)="onPageSizeChange($event)"
     />
+
+    <button
+      [disabled]="pageSize == null || pageSize >= data.length"
+      type="button"
+      (click)="increasePageSize()"
+    >
+      +
+    </button>
   </fieldset>
 
   <table class="data-grid">
