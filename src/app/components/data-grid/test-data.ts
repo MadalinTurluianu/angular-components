@@ -15,7 +15,7 @@ function observerFunction(observer: Observer<typeof normalTestData>) {
 
   setTimeout(() => {
     observer.next([{ name: 'test0', id: 0, position: 'not relevant' }]);
-  }, 2000);
+  }, 200);
 
   // Return the unsubscribe function.
   // This one doesn't do anything

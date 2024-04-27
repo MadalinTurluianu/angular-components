@@ -1,6 +1,12 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import { DataGridComponent } from './data-grid.component';
-import { normalTestData } from './test-data';
+import { normalTestData, observableTestData } from './test-data';
 import { TableColumnComponent } from '../table-column/table-column.component';
 import { QueryList } from '@angular/core';
 
@@ -170,8 +176,10 @@ describe('DataGridComponent', () => {
     firstHeaderButton.click();
     fixture.detectChanges();
 
-    const firstCell = fixture.nativeElement.querySelector('[data-testid=cell]') as HTMLElement;
-    
+    const firstCell = fixture.nativeElement.querySelector(
+      '[data-testid=cell]'
+    ) as HTMLElement;
+
     expect(firstCell.textContent?.trim()).toEqual('1');
   });
 
@@ -184,8 +192,34 @@ describe('DataGridComponent', () => {
     firstHeaderButton.click();
     fixture.detectChanges();
 
-    const firstCell = fixture.nativeElement.querySelector('[data-testid=cell]') as HTMLElement;
-    
+    const firstCell = fixture.nativeElement.querySelector(
+      '[data-testid=cell]'
+    ) as HTMLElement;
+
     expect(firstCell.textContent?.trim()).toEqual('6');
   });
+  it('should work with Observable data', fakeAsync(() => {
+    component.data = observableTestData;
+    component.pageSize = 2;
+    component.ngOnInit();
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+
+    const firstCell = fixture.nativeElement.querySelector(
+      '[data-testid=cell]'
+    ) as HTMLElement;
+
+    expect(firstCell.textContent?.trim()).toEqual('2');
+
+    tick(201);
+    fixture.detectChanges();
+
+    fixture.whenStable().then(() => {
+      const firstCell = fixture.nativeElement.querySelector(
+        '[data-testid=cell]'
+      ) as HTMLElement;
+
+      expect(firstCell.textContent?.trim()).toEqual('0');
+    });
+  }));
 });
