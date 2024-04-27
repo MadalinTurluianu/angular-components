@@ -28,6 +28,18 @@ export class ProgressIndicatorPageComponent {
     radius: 50,
   };
 
+  onItem1Complete() {
+    console.log('Item 1 complete');
+  }
+
+  onItem2Complete() {
+    console.log('Item 2 complete');
+  }
+
+  onItem3Complete() {
+    console.log('Item 3 complete');
+  }
+
   updateInput1Color(event: Event) {
     this.input1.color = (event.target as HTMLInputElement).value;
   }

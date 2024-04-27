@@ -102,15 +102,20 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   checkNextAvailable() {
     const lastElementOnPage = this.shownData[this.shownData.length - 1];
     const lastElementIndex = this.sortedData.indexOf(lastElementOnPage);
-
     this.nextAvailable = lastElementIndex < this.sortedData.length - 1;
   }
 
   goNextPage() {
+    if (this.page >= this.pages) return;
     this.page++;
     this.showPage();
     this.checkNextAvailable();
     this.checkPreviousAvailable();
+
+    this.paginationChange.emit({
+      pageSize: this.pageSize,
+      currentPage: this.page,
+    });
   }
 
   // go previous page
@@ -119,10 +124,16 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   }
 
   goPreviousPage() {
+    if (this.page <= 1) return;
     this.page--;
     this.showPage();
     this.checkPreviousAvailable();
     this.checkNextAvailable();
+
+    this.paginationChange.emit({
+      pageSize: this.pageSize,
+      currentPage: this.page,
+    });
   }
 
   // change page size

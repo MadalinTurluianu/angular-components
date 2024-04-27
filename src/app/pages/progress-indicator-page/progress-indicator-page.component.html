@@ -7,6 +7,7 @@
         [progress]="input1.progress"
         [showProgress]="false"
         [radius]="input1.radius"
+        (complete)="onItem1Complete()"
       />
     </div>
 
@@ -54,6 +55,7 @@
         [progress]="input2.progress"
         [showProgress]="false"
         [radius]="input2.radius"
+        (complete)="onItem2Complete()"
       />
     </div>
 
@@ -101,6 +103,7 @@
         [progress]="input3.progress"
         [showProgress]="true"
         [radius]="input3.radius"
+        (complete)="onItem3Complete()"
       />
     </div>
 

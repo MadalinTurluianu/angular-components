@@ -3,6 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { DataGridComponent } from '../../components/data-grid/data-grid.component';
 import { TableColumnComponent } from '../../components/table-column/table-column.component';
 import { tableData } from '../../data/table-data';
+import {
+  PaginationChangeProps,
+  SortChangeProps,
+} from '../../components/data-grid/data-grid.types';
 
 @Component({
   selector: 'app-data-grid-page',
@@ -13,4 +17,12 @@ import { tableData } from '../../data/table-data';
 })
 export class DataGridPageComponent {
   data = tableData;
+
+  paginationChangedOnDataGrid(event: PaginationChangeProps) {
+    console.log(event);
+  }
+
+  sortChangedOnDataGrid(event: SortChangeProps) {
+    console.log(event);
+  }
 }

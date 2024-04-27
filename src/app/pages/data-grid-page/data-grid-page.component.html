@@ -1,5 +1,11 @@
 <div class="page">
-  <t-grid [data]="data" [pageSize]="10" [sortable]="true">
+  <t-grid
+    [data]="data"
+    [pageSize]="10"
+    [sortable]="true"
+    (paginationChange)="paginationChangedOnDataGrid($event)"
+    (sortChange)="sortChangedOnDataGrid($event)"
+  >
     <t-column name="Name" property="name" [sortable]="true" />
     <t-column
       name="Position"
