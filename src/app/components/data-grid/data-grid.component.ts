@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, TableColumnComponent, FormsModule],
   styleUrl: './data-grid.component.css',
   templateUrl: './data-grid.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataGridComponent<T extends Record<string, string | number>> {
   constructor(private changeDetector: ChangeDetectorRef) {}
@@ -176,6 +178,9 @@ export class DataGridComponent<T extends Record<string, string | number>> {
     if (this.pageSize >= this.sortedData.length) return;
 
     this.changePageSize(this.pageSize + 1);
+    if (this.shownData.length === 0 && this.page > 1) {
+      this.page--
+    }
   }
 
   decreasePageSize() {

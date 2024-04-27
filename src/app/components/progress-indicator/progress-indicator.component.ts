@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 
 @Component({
   selector: 'app-progress-indicator',
@@ -6,6 +12,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   imports: [],
   templateUrl: './progress-indicator.component.html',
   styleUrl: './progress-indicator.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProgressIndicatorComponent {
   @Input() radius!: number;
