@@ -29,15 +29,15 @@ export class ProgressIndicatorPageComponent {
   };
 
   onItem1Complete() {
-    console.log('Item 1 complete');
+    console.log('Item 1 complete - ', this.input1);
   }
 
   onItem2Complete() {
-    console.log('Item 2 complete');
+    console.log('Item 2 complete - ', this.input2);
   }
 
   onItem3Complete() {
-    console.log('Item 3 complete');
+    console.log('Item 3 complete - ', this.input3);
   }
 
   updateInput1Color(event: Event) {
@@ -50,7 +50,6 @@ export class ProgressIndicatorPageComponent {
 
   updateInput3Color(event: Event) {
     this.input3.color = (event.target as HTMLInputElement).value;
-    console.log(this.input3);
   }
 
   updateInput1Progress(event: Event) {
