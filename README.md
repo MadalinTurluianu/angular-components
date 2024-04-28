@@ -17,3 +17,5 @@ You can check the console in order to see this outputs
 - sortChange
 - paginationChange
 - complete
+
+The components specified in the requirement are placed in src/components, the other components such as pages were made just for presentation purpose and to make the manual testing easier.
