@@ -147,8 +147,12 @@ export class DataGridComponent<T extends Record<string, string | number>> {
   // change page size
 
   changePageSize(size: number) {
-    const newPageSize =
-      size > this.sortedData.length ? this.sortedData.length : size;
+    let newPageSize = size;
+
+    if (newPageSize > this.sortedData.length)
+      newPageSize = this.sortedData.length;
+
+    if (newPageSize < 1) newPageSize = 1;
 
     this.pageSize = newPageSize;
 
@@ -160,6 +164,12 @@ export class DataGridComponent<T extends Record<string, string | number>> {
     this.checkNextAvailable();
     this.checkPreviousAvailable();
 
+    if (this.shownData.length === 0 && this.page > 1) {
+      this.checkNumberOfPages();
+      this.page = this.pages;
+      this.showPage();
+    }
+
     this.paginationChange.emit({
       pageSize: this.pageSize,
       currentPage: this.page,
@@ -168,8 +178,7 @@ export class DataGridComponent<T extends Record<string, string | number>> {
 
   onPageSizeChange(event: Event) {
     if (!(event.target instanceof HTMLInputElement)) return;
-
-    const inputValue = Number(event.target.value) || 1;
+    const inputValue = Number(event.target.value);
     this.changePageSize(inputValue);
   }
 
@@ -178,11 +187,6 @@ export class DataGridComponent<T extends Record<string, string | number>> {
     if (this.pageSize >= this.sortedData.length) return;
 
     this.changePageSize(this.pageSize + 1);
-    if (this.shownData.length === 0 && this.page > 1) {
-      this.checkNumberOfPages();
-      this.page = this.pages;
-      this.showPage();
-    }
   }
 
   decreasePageSize() {
